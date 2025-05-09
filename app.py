@@ -1,6 +1,6 @@
 import os
-from flask import Flask, request, make_response, redirect, render_template, g
-from user_service import get_user_with_credentials, logged_in, login_required
+from flask import Flask, request, make_response, redirect, render_template, g, abort
+from user_service import get_user_with_credentials, login_required
 from account_service import do_transfer, get_balance
 from flask_wtf.csrf import CSRFProtect
 
