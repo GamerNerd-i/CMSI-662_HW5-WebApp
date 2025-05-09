@@ -16,7 +16,6 @@ def login_required(func):
     def wrapper(*args, **kwargs):
         if not logged_in():
             return render_template("login.html")
-        print("user is logged in already")
         return func(*args, **kwargs)
 
     return wrapper
@@ -40,8 +39,8 @@ def get_user_with_credentials(email, password):
         """
         if row is None:
             row = ["fake", "fake", pbkdf2_sha256.hash(secrets.token_hex(16))]
-        email, name, hash = row
-        if not pbkdf2_sha256.verify(password, hash):
+        email, name, pass_hash = row
+        if not pbkdf2_sha256.verify(password, pass_hash):
             return None
         return {"email": email, "name": name, "token": create_token(email)}
     finally:

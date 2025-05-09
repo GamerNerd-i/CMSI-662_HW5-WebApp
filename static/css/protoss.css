@@ -1,0 +1,422 @@
+/* Protoss Theme CSS - Inspired by StarCraft II */
+
+/* Import fonts (Google Fonts or similar that resemble Protoss aesthetic) */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap");
+
+:root {
+    /* Protoss Color Palette */
+    --protoss-gold: #ffd700; /* Protoss structures */
+    --protoss-blue: #00aaff; /* Protoss shields */
+    --protoss-cyan: #00ffff; /* Protoss energies */
+    --protoss-dark-blue: #000033; /* Protoss night backgrounds */
+    --protoss-purple: #7755cc; /* Protoss Void energies */
+    --protoss-light: #efefff; /* Text color */
+    --protoss-glow: 0 0 10px #00aaff; /* Glow effect */
+
+    /* Background gradients */
+    --bg-gradient: linear-gradient(to bottom, #000033, #0a1a40);
+}
+
+/* Base styles */
+body {
+    font-family: "Orbitron", sans-serif;
+    background: var(--bg-gradient);
+    color: var(--protoss-light);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Headings with Protoss aesthetic */
+h1,
+h2,
+h3 {
+    color: var(--protoss-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: var(--protoss-glow);
+    margin-bottom: 1.5rem;
+}
+
+h1 {
+    border-bottom: 2px solid var(--protoss-gold);
+    padding-bottom: 0.5rem;
+    font-weight: 900;
+}
+
+/* Links with Protoss energy styling */
+a {
+    color: var(--protoss-cyan);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    display: inline-block;
+    margin: 0.5rem 0;
+}
+
+a:hover {
+    color: var(--protoss-gold);
+    text-shadow: var(--protoss-glow);
+    border-color: var(--protoss-blue);
+    box-shadow: var(--protoss-glow);
+}
+
+/* Forms with Protoss structure styling */
+form {
+    background: rgba(0, 10, 40, 0.7);
+    border: 1px solid var(--protoss-purple);
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 170, 255, 0.2);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Form elements */
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+    background-color: rgba(0, 0, 51, 0.7);
+    border: 1px solid var(--protoss-blue);
+    color: var(--protoss-light);
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    width: 100%;
+    border-radius: 4px;
+    font-family: "Orbitron", sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--protoss-gold);
+    box-shadow: var(--protoss-glow);
+}
+
+/* Submit buttons with energy styling */
+input[type="submit"] {
+    background: linear-gradient(
+        to bottom,
+        var(--protoss-blue),
+        var(--protoss-dark-blue)
+    );
+    color: var(--protoss-gold);
+    border: none;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: "Orbitron", sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--protoss-cyan);
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(
+        to bottom,
+        var(--protoss-cyan),
+        var(--protoss-blue)
+    );
+    box-shadow: var(--protoss-glow);
+    transform: translateY(-2px);
+}
+
+/* Alerts for flashed messages */
+.alert {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: rgba(0, 255, 0, 0.2);
+    border: 1px solid #00ff00;
+    color: #00ff00;
+}
+
+.alert-danger {
+    background-color: rgba(255, 0, 0, 0.2);
+    border: 1px solid #ff0000;
+    color: #ff0000;
+}
+
+/* Container for content */
+.container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    background: rgba(0, 10, 40, 0.5);
+    padding: 2rem;
+    border: 1px solid var(--protoss-purple);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.3);
+}
+
+/* Dashboard specific styling */
+.dashboard-container {
+    position: relative;
+}
+
+.dashboard-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.psi-matrix {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background-image: repeating-linear-gradient(
+        90deg,
+        var(--protoss-gold) 0px,
+        var(--protoss-gold) 2px,
+        transparent 2px,
+        transparent 15px
+    );
+    opacity: 0.3;
+    z-index: -1;
+}
+
+.protoss-card {
+    background: rgba(0, 10, 40, 0.7);
+    border: 1px solid var(--protoss-purple);
+    border-radius: 5px;
+    padding: 1.5rem;
+    width: 230px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.protoss-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--protoss-gold);
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 20, 60, 0.7),
+        rgba(0, 10, 40, 0.7)
+    );
+}
+
+.protoss-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: var(--protoss-gold);
+    transition: all 0.5s ease;
+}
+
+.protoss-card:hover::before {
+    left: 0;
+}
+
+.card-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 80, 120, 0.3);
+    border: 1px solid var(--protoss-blue);
+    position: relative;
+}
+
+.savings-icon::before {
+    content: "S";
+    color: var(--protoss-gold);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.checking-icon::before {
+    content: "C";
+    color: var(--protoss-cyan);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.warp-icon::before {
+    content: "W";
+    color: var(--protoss-purple);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Transfer form specific styling */
+pre {
+    font-family: "Orbitron", sans-serif;
+    color: var(--protoss-cyan);
+    margin: 1rem 0;
+}
+
+/* Balance display styling */
+.balance-display {
+    font-size: 1.5rem;
+    color: var(--protoss-gold);
+    text-shadow: var(--protoss-glow);
+    padding: 1rem;
+    background: rgba(0, 0, 51, 0.5);
+    border: 1px solid var(--protoss-blue);
+    border-radius: 4px;
+    margin: 1rem 0;
+    display: inline-block;
+}
+
+/* Mineral icon for balance */
+.balance-display::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url("/assets/SC2_Mineral_Icon.png") no-repeat;
+    background-size: contain;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+
+/* Logout link */
+.logout-link {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 10, 40, 0.7);
+    border-radius: 4px;
+}
+
+/* Back links */
+.back-link {
+    margin-top: 2rem;
+    display: inline-block;
+}
+
+/* For form layout in transfer.html */
+.transfer-form {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    padding: 1rem;
+    text-align: center;
+    color: var(--protoss-cyan);
+    font-size: 0.8rem;
+    width: 100%;
+}
+
+/* Login specific styling */
+.login-container {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.form-group label {
+    color: var(--protoss-gold);
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.form-actions {
+    margin-top: 2rem;
+}
+
+.protoss-quote {
+    margin-top: 2rem;
+    font-style: italic;
+    color: var(--protoss-cyan);
+    text-shadow: var(--protoss-glow);
+    letter-spacing: 1px;
+}
+
+.protoss-form {
+    position: relative;
+}
+
+.protoss-form::before,
+.protoss-form::after {
+    content: "";
+    position: absolute;
+    width: 20%;
+    height: 2px;
+    background-color: var(--protoss-gold);
+    opacity: 0.7;
+}
+
+.protoss-form::before {
+    top: -1px;
+    left: 0;
+}
+
+.protoss-form::after {
+    bottom: -1px;
+    right: 0;
+}
+
+/* Glowing elements animation */
+@keyframes glow-pulse {
+    0% {
+        box-shadow: 0 0 5px var(--protoss-blue);
+    }
+    50% {
+        box-shadow: 0 0 15px var(--protoss-cyan);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--protoss-blue);
+    }
+}
+
+.protoss-form input[type="submit"] {
+    animation: glow-pulse 2s infinite;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 1rem;
+    }
+
+    input[type="submit"] {
+        padding: 0.8rem 1.5rem;
+    }
+}

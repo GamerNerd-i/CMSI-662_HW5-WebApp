@@ -1,15 +1,28 @@
-{% if error %}<p style="color: red">{{ error }}</p>{% endif %}
-<form method="post" action="/login">
-    <p>
-        Email:
-        <input type="text" name="email" />
-    </p>
-    <p>
-        Password:
-        <input type="password" name="password" />
-    </p>
-    <p>
-        <input type="submit" value="Login" />
-    </p>
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-</form>
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h1>Enter the Nexus</h1>
+    
+    {% if error %}<p class="alert alert-danger">{{ error }}</p>{% endif %}
+    <form method="post" action="/login" class="protoss-form">
+        <div class="form-group">
+            <label for="email">Executor ID:</label>
+            <input type="text" name="email" id="email" placeholder="Enter your Khalai identifier" />
+        </div>
+        <div class="form-group">
+            <label for="password">Psi Authentication:</label>
+            <input type="password" name="password" id="password" placeholder="••••••••" />
+        </div>
+        <div class="form-actions">
+            <input type="submit" value="Establish Psionic Link" />
+        </div>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    </form>
+    <div class="protoss-quote">
+        <p>"En Taro Adun. For Aiur!"</p>
+    </div>
+</div>
+{% endblock %}

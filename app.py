@@ -1,5 +1,15 @@
 import os
-from flask import Flask, request, make_response, redirect, render_template, g, abort
+from flask import (
+    Flask,
+    flash,
+    request,
+    make_response,
+    redirect,
+    render_template,
+    g,
+    abort,
+    send_from_directory,
+)
 from user_service import get_user_with_credentials, login_required
 from account_service import do_transfer, get_balance
 from flask_wtf.csrf import CSRFProtect
@@ -12,6 +22,11 @@ CSRF: Flask_WTF gives us the CSRFProtect() function. With it, we can include a "
 input in every form in our app. If the csrf_token is missing from the form, it will not be submitted.
 """
 csrf = CSRFProtect(app)
+
+
+@app.route("/assets/<path:filename>")
+def serve_assets(filename):
+    return send_from_directory(os.path.join(app.root_path, "assets"), filename)
 
 
 @app.route("/", methods=["GET"])
@@ -59,14 +74,16 @@ def transfer():
 
     source = request.form.get("from")
     target = request.form.get("to")
-    amount = int(request.form.get("amount"))
 
     """
-    We already restrict inputs from the client, but as always we make sure to check them again
+    XSS: We already restrict inputs from the client, but as always we make sure to check them again
     on the server.
     """
-    if not isinstance(amount, (int, float)):
-        abort(400, "Invalid amount input.")
+    try:
+        amount = int(request.form.get("amount"))
+    except ValueError:
+        abort(400, "Incorrect input format for transfer amount.")
+
     if amount < 1:
         abort(400, "Must trade at least 1 mineral.")
     if amount > 1000:
@@ -79,7 +96,7 @@ def transfer():
         abort(400, "You have not enough minerals!")
 
     if do_transfer(source, target, amount):
-        pass  # TODO GIVE FEEDBACK
+        flash("Mineral transfer complete!")
     else:
         abort(400, "Transfer interrupted by enemy communications! Try again later.")
 

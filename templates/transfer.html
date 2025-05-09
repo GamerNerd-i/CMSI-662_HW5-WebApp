@@ -1,15 +1,21 @@
-<h1>Make a Transfer</h1>
-<form method="POST" action="/transfer">
+{% extends "base.html" %}
+
+{% block title %}Warp Resources{% endblock %}
+
+{% block content %}
+<h1>Warp Resources</h1>
+<form method="POST" action="/transfer" class="transfer-form">
     <!-- SQL INJECTION: We restrict the client from entering any kind of punctuation.
     We still validate them on the server, but it doesn't hurt to have this in place as well. -->
     <pre>
   From   <input name="from" type="text" pattern="[a-zA-Z0-9]+" />
   To     <input name="to" type="text" pattern="[a-zA-Z0-9]+" />
   Amount <input name="amount" type="number" min="1" max="999" />
-         <input type="submit" value="Transfer">
+         <input type="submit" value="Warp Transfer">
   </pre>
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 </form>
 <p>
-    <a href="/dashboard">Back to Dashboard</a>
+    <a href="/dashboard" class="back-link">Back to Nexus Command Center</a>
 </p>
+{% endblock %}
