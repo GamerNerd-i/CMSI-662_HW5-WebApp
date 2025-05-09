@@ -6,6 +6,11 @@ from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET")
+
+"""
+CSRF: Flask_WTF gives us the CSRFProtect() function. With it, we can include a "csrf_token"
+input in every form in our app. If the csrf_token is missing from the form, it will not be submitted.
+"""
 csrf = CSRFProtect(app)
 
 
@@ -56,21 +61,27 @@ def transfer():
     target = request.form.get("to")
     amount = int(request.form.get("amount"))
 
-    if amount < 0:
-        abort(400, "NO STEALING")
+    """
+    We already restrict inputs from the client, but as always we make sure to check them again
+    on the server.
+    """
+    if not isinstance(amount, (int, float)):
+        abort(400, "Invalid amount input.")
+    if amount < 1:
+        abort(400, "Must trade at least 1 mineral.")
     if amount > 1000:
-        abort(400, "WOAH THERE TAKE IT EASY")
+        abort(400, "Cannot trade more than 999 minerals at once.")
 
     available_balance = get_balance(source, g.user)
     if available_balance is None:
-        abort(404, "Account not found")
+        abort(404, "Account not found.")
     if amount > available_balance:
-        abort(400, "You don't have that much")
+        abort(400, "You have not enough minerals!")
 
     if do_transfer(source, target, amount):
         pass  # TODO GIVE FEEDBACK
     else:
-        abort(400, "Something bad happened")
+        abort(400, "Transfer interrupted by enemy communications! Try again later.")
 
     response = make_response(redirect("/dashboard"))
     return response, 303

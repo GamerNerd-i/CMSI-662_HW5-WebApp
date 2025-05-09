@@ -1,6 +1,7 @@
 import os
 import sqlite3
-from datetime import datetime, timedelta
+import secrets
+from datetime import datetime, timedelta, timezone
 from passlib.hash import pbkdf2_sha256
 from functools import wraps
 
@@ -31,8 +32,14 @@ def get_user_with_credentials(email, password):
             (email,),
         )
         row = cur.fetchone()
+
+        """
+        USER ENUMERATION / TIMING ATTACKS:
+        We create a random, fake "password" to pass to verify() even if we don't have a real
+        password to check the inserted password against.
+        """
         if row is None:
-            return None
+            row = ["fake", "fake", pbkdf2_sha256.hash(secrets.token_hex(16))]
         email, name, hash = row
         if not pbkdf2_sha256.verify(password, hash):
             return None
@@ -52,7 +59,7 @@ def logged_in():
 
 
 def create_token(email):
-    now = datetime.utcnow()
+    now = datetime.now(timezone.utc)
     payload = {"sub": email, "iat": now, "exp": now + timedelta(minutes=60)}
     token = jwt.encode(payload, SECRET, algorithm="HS256")
     return token
