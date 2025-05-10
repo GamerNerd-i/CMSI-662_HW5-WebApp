@@ -90,7 +90,7 @@ select {
     color: var(--protoss-light);
     padding: 0.8rem;
     margin: 0.5rem 0;
-    width: 100%;
+    width: 90%;
     border-radius: 4px;
     font-family: "Orbitron", sans-serif;
 }
@@ -113,7 +113,7 @@ input[type="submit"] {
     color: var(--protoss-gold);
     border: none;
     padding: 1rem 2rem;
-    margin-top: 1rem;
+    margin: 1rem auto;
     border-radius: 4px;
     cursor: pointer;
     font-family: "Orbitron", sans-serif;
@@ -122,6 +122,7 @@ input[type="submit"] {
     letter-spacing: 1px;
     transition: all 0.3s ease;
     border: 1px solid var(--protoss-cyan);
+    display: block;
 }
 
 input[type="submit"]:hover {
@@ -157,6 +158,7 @@ input[type="submit"]:hover {
 
 /* Container for content */
 .container {
+    align-self: center;
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
@@ -269,10 +271,50 @@ input[type="submit"]:hover {
 }
 
 /* Transfer form specific styling */
-pre {
-    font-family: "Orbitron", sans-serif;
+.form-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-grid label {
     color: var(--protoss-cyan);
-    margin: 1rem 0;
+    font-weight: 500;
+    text-align: right;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.glow-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-button::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(0, 170, 255, 0.4) 0%,
+        rgba(0, 0, 0, 0) 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.glow-button:hover::after {
+    opacity: 1;
 }
 
 /* Balance display styling */
@@ -315,29 +357,22 @@ pre {
     display: inline-block;
 }
 
-/* For form layout in transfer.html */
-.transfer-form {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    align-items: center;
-}
-
-/* Footer */
-footer {
-    margin-top: auto;
-    padding: 1rem;
-    text-align: center;
-    color: var(--protoss-cyan);
-    font-size: 0.8rem;
-    width: 100%;
-}
-
 /* Login specific styling */
 .login-container {
     text-align: center;
     max-width: 500px;
     margin: 0 auto;
+    position: relative;
+}
+
+.aiur-emblem {
+    width: 80px;
+    height: 80px;
+    background: url("/assets/Aiur-Emblem.png") no-repeat center center;
+    background-size: contain;
+    margin: 0 auto 20px;
+    opacity: 0.8;
+    filter: drop-shadow(0 0 10px var(--protoss-blue));
 }
 
 .form-group {
@@ -353,10 +388,6 @@ footer {
     text-align: left;
 }
 
-.form-actions {
-    margin-top: 2rem;
-}
-
 .protoss-quote {
     margin-top: 2rem;
     font-style: italic;
@@ -367,6 +398,7 @@ footer {
 
 .protoss-form {
     position: relative;
+    align-self: center;
 }
 
 .protoss-form::before,
@@ -389,21 +421,27 @@ footer {
     right: 0;
 }
 
-/* Glowing elements animation */
-@keyframes glow-pulse {
-    0% {
-        box-shadow: 0 0 5px var(--protoss-blue);
-    }
-    50% {
-        box-shadow: 0 0 15px var(--protoss-cyan);
-    }
-    100% {
-        box-shadow: 0 0 5px var(--protoss-blue);
-    }
+.protoss-form input[type="submit"],
+.glow-button {
+    background-size: 200% 200%;
+    background-image: linear-gradient(
+        45deg,
+        var(--protoss-blue) 0%,
+        var(--protoss-dark-blue) 25%,
+        var(--protoss-purple) 50%,
+        var(--protoss-dark-blue) 75%,
+        var(--protoss-blue) 100%
+    );
 }
 
-.protoss-form input[type="submit"] {
-    animation: glow-pulse 2s infinite;
+/* Footer */
+footer {
+    margin-top: auto;
+    padding: 1rem;
+    text-align: center;
+    color: var(--protoss-cyan);
+    font-size: 0.8rem;
+    width: 100%;
 }
 
 /* Responsive design */

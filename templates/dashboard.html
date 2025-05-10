@@ -1,37 +1,31 @@
 {% extends "base.html" %}
-
 {% block title %}Dashboard{% endblock %}
-
 {% block content %}
-<a href="/logout" class="logout-link">Disconnect</a>
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">{{ message }}</div>
-        {% endfor %}
-    {% endif %}
-{% endwith %}
-
-<h1>Nexus Command Center</h1>
-<div class="dashboard-container">
-    <div class="psi-matrix"></div>
-    <div class="dashboard-options">
-        <a href="/details?account=100" class="protoss-card">
-            <div class="card-icon savings-icon"></div>
-            <h2>Savings Fleet</h2>
-            <p>View your primary mineral reserves</p>
-        </a>
-        <a href="/details?account=998" class="protoss-card">
-            <div class="card-icon checking-icon"></div>
-            <h2>Checking Archives</h2>
-            <p>Access your vespene expenditure records</p>
-        </a>
-        <a href="/transfer" class="protoss-card">
-            <div class="card-icon warp-icon"></div>
-            <h2>Warp Resources</h2>
-            <p>Transfer minerals between accounts</p>
-        </a>
+    <a href="/logout" class="logout-link">Disconnect</a>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h1>Nexus Command Center</h1>
+    <div class="dashboard-container">
+        <div class="psi-matrix"></div>
+        <div class="dashboard-options">
+            <a href="/details?account=100" class="protoss-card">
+                <div class="card-icon savings-icon"></div>
+                <h2>Savings Fleet</h2>
+                <p>View your primary mineral reserves</p>
+            </a>
+            <a href="/details?account=998" class="protoss-card">
+                <div class="card-icon checking-icon"></div>
+                <h2>Checking Archives</h2>
+                <p>Access your vespene expenditure records</p>
+            </a>
+            <a href="/transfer" class="protoss-card">
+                <div class="card-icon warp-icon"></div>
+                <h2>Warp Resources</h2>
+                <p>Transfer minerals between accounts</p>
+            </a>
+        </div>
     </div>
-</div>
 {% endblock %}
