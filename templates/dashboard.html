@@ -1,25 +1,22 @@
 {% extends "base.html" %}
 {% block title %}Dashboard{% endblock %}
 {% block content %}
-    <a href="/logout" class="logout-link">Disconnect</a>
+    <h1>Nexus Command Center</h1>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}<div class="alert alert-{{ category }}">{{ message }}</div>{% endfor %}
         {% endif %}
     {% endwith %}
-    <h1>Nexus Command Center</h1>
+    <p>
+        Greetings, Executor {{ email }} <a href="/logout" class="logout-link">Disconnect</a>
+    </p>
     <div class="dashboard-container">
         <div class="psi-matrix"></div>
         <div class="dashboard-options">
-            <a href="/details?account=100" class="protoss-card">
+            <a href="/accounts" class="protoss-card">
                 <div class="card-icon savings-icon"></div>
-                <h2>Savings Fleet</h2>
-                <p>View your primary mineral reserves</p>
-            </a>
-            <a href="/details?account=998" class="protoss-card">
-                <div class="card-icon checking-icon"></div>
-                <h2>Checking Archives</h2>
-                <p>Access your vespene expenditure records</p>
+                <h2>Resource Archives</h2>
+                <p>View your mineral reserves</p>
             </a>
             <a href="/transfer" class="protoss-card">
                 <div class="card-icon warp-icon"></div>

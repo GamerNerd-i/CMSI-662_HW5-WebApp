@@ -44,3 +44,20 @@ def do_transfer(source, target, amount):
         return True
     finally:
         con.close()
+
+
+def get_user_accounts(owner):
+    """Get all accounts belonging to a specific user."""
+    try:
+        con = sqlite3.connect("bank.db")
+        cur = con.cursor()
+        cur.execute(
+            """
+            SELECT id, balance FROM accounts WHERE owner=? ORDER BY id""",
+            (owner,),
+        )
+        rows = cur.fetchall()
+        accounts = [{"id": row[0], "balance": row[1]} for row in rows]
+        return accounts
+    finally:
+        con.close()

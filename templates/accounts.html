@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Accounts{% endblock %}
+{% block content %}
+    <h1>Resource Archives</h1>
+    <p>
+        Greetings, Executor {{ email }} <a href="/logout" class="logout-link">Disconnect</a>
+    </p>
+    <div class="accounts-container">
+        <div class="psi-matrix"></div>
+        {% if accounts %}
+            <div class="accounts-grid">
+                {% for account in accounts %}
+                    <a href="/details?account={{ account.id }}"
+                       class="account-card protoss-card">
+                        <div class="card-icon account-icon">{{ account.id }}</div>
+                        <h2>Archive #{{ account.id }}</h2>
+                    </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-accounts">
+                <p>No accounts found in the archives.</p>
+            </div>
+        {% endif %}
+        <div class="back-container">
+            <a href="/dashboard" class="back-link">Return to Nexus Command Center</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,10 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Account Details{% endblock %}
 {% block content %}
-    <p>Hi, {{ user }}</p>
-    <h1>Details for Account {{ account_number }}</h1>
-    <p class="balance-display">Your balance is {{ balance }}</p>
-    <p>
+    <h1>Details for Archive #{{ account_number }}</h1>
+    {% if balance %}
+        <div>
+            <span class="balance-label">Current Balance:</span>
+            <span class="balance-value">{{ balance }}</span>
+        </div>
+    {% endif %}
+    {% if not balance %}<p class="balance-label">Account not found</p>{% endif %}
+    <div class="action-links">
+        <a href="/accounts" class="back-link">Back to Accounts</a>
         <a href="/dashboard" class="back-link">Back to Dashboard</a>
-    </p>
+    </div>
 {% endblock %}

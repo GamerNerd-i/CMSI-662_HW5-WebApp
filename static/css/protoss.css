@@ -279,82 +279,114 @@ input[type="submit"]:hover {
     margin-bottom: 1.5rem;
 }
 
-.form-grid label {
-    color: var(--protoss-cyan);
-    font-weight: 500;
-    text-align: right;
+/* Accounts page specific styling */
+.accounts-container {
+    position: relative;
+    padding-top: 1rem;
 }
 
-.form-actions {
+.accounts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.account-card {
     display: flex;
-    justify-content: center;
-    margin-top: 2rem;
+    flex-direction: column;
+    align-items: center;
 }
 
-.glow-button {
+.account-icon {
+    font-family: "Orbitron", sans-serif;
+    color: var(--protoss-gold);
+    font-size: 1.2rem;
+    font-weight: bold;
     position: relative;
     overflow: hidden;
 }
 
-.glow-button::after {
+.account-icon::before {
     content: "";
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    width: 100%;
+    height: 100%;
     background: radial-gradient(
         circle,
-        rgba(0, 170, 255, 0.4) 0%,
+        rgba(0, 170, 255, 0.2) 0%,
         rgba(0, 0, 0, 0) 70%
     );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
+    animation: psionic-pulse 3s infinite;
 }
 
-.glow-button:hover::after {
-    opacity: 1;
+@keyframes psionic-pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.3;
+    }
 }
 
-/* Balance display styling */
-.balance-display {
-    font-size: 1.5rem;
-    color: var(--protoss-gold);
-    text-shadow: var(--protoss-glow);
-    padding: 1rem;
-    background: rgba(0, 0, 51, 0.5);
-    border: 1px solid var(--protoss-blue);
-    border-radius: 4px;
-    margin: 1rem 0;
+.balance-label {
+    font-size: 1.2rem;
+    color: #bbb;
+}
+
+.balance-value {
+    color: var(--protoss-cyan);
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    position: relative;
     display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 51, 0.5);
+    border-radius: 4px;
 }
 
-/* Mineral icon for balance */
-.balance-display::before {
+.balance-value::before {
     content: "";
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background: url("/assets/SC2_Mineral_Icon.png") no-repeat;
     background-size: contain;
     margin-right: 0.5rem;
     vertical-align: middle;
 }
 
-/* Logout link */
-.logout-link {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: rgba(0, 10, 40, 0.7);
-    border-radius: 4px;
+.no-accounts {
+    text-align: center;
+    padding: 3rem;
+    background: rgba(0, 10, 40, 0.5);
+    border: 1px solid var(--protoss-purple);
+    border-radius: 5px;
+    margin: 2rem 0;
+}
+
+.back-container {
+    text-align: center;
+    margin-top: 2rem;
 }
 
 /* Back links */
 .back-link {
     margin-top: 2rem;
     display: inline-block;
+}
+
+.action-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: flex-start;
 }
 
 /* Login specific styling */

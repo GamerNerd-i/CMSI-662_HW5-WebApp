@@ -10,8 +10,9 @@ from flask import (
     abort,
     send_from_directory,
 )
+
 from user_service import get_user_with_credentials, login_required
-from account_service import do_transfer, get_balance
+from account_service import do_transfer, get_balance, get_user_accounts
 from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
@@ -51,6 +52,13 @@ def login():
 @login_required
 def dashboard():
     return render_template("dashboard.html", email=g.user)
+
+
+@app.route("/accounts", methods=["GET"])
+@login_required
+def accounts():
+    user_accounts = get_user_accounts(g.user)
+    return render_template("accounts.html", email=g.user, accounts=user_accounts)
 
 
 @app.route("/details", methods=["GET"])
