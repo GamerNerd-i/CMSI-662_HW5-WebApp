@@ -179,12 +179,12 @@ input[type="submit"]:hover {
     flex-wrap: wrap;
     justify-content: center;
     gap: 1.5rem;
-    margin-top: 2rem;
+    margin: 2rem;
 }
 
 .psi-matrix {
-    position: absolute;
-    top: -50px;
+    position: relative;
+    top: -20px;
     left: 0;
     right: 0;
     height: 20px;
@@ -195,7 +195,7 @@ input[type="submit"]:hover {
         transparent 2px,
         transparent 15px
     );
-    opacity: 0.3;
+    opacity: 0.5;
     z-index: -1;
 }
 
@@ -250,15 +250,8 @@ input[type="submit"]:hover {
 }
 
 .savings-icon::before {
-    content: "S";
+    content: "A";
     color: var(--protoss-gold);
-    font-size: 1.5rem;
-    font-weight: bold;
-}
-
-.checking-icon::before {
-    content: "C";
-    color: var(--protoss-cyan);
     font-size: 1.5rem;
     font-weight: bold;
 }
@@ -282,14 +275,14 @@ input[type="submit"]:hover {
 /* Accounts page specific styling */
 .accounts-container {
     position: relative;
-    padding-top: 1rem;
 }
 
 .accounts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
+    gap: 1.5rem;
+    margin: 2rem;
+    justify-content: center;
 }
 
 .account-card {
@@ -380,13 +373,6 @@ input[type="submit"]:hover {
 .back-link {
     margin-top: 2rem;
     display: inline-block;
-}
-
-.action-links {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    justify-content: flex-start;
 }
 
 /* Login specific styling */
