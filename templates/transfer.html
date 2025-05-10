@@ -2,6 +2,7 @@
 {% block title %}Transfer{% endblock %}
 {% block content %}
     <h1>Warp Resources</h1>
+    {% if error %}<p class="alert alert-danger">{{ error }}</p>{% endif %}
     <form method="POST" action="/transfer" class="transfer-form">
         <!-- SQL INJECTION: We restrict the client from entering any kind of punctuation.
     We still validate them on the server, but it doesn't hurt to have this in place as well. -->

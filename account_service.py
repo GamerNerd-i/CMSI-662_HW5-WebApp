@@ -1,5 +1,10 @@
 import sqlite3
 
+"""
+SQL INJECTION: Paramaterized values using (?), as shown below, are automatically protected
+from SQL injection attacks.
+"""
+
 
 def get_balance(account_number, owner):
     try:
@@ -47,7 +52,6 @@ def do_transfer(source, target, amount):
 
 
 def get_user_accounts(owner):
-    """Get all accounts belonging to a specific user."""
     try:
         con = sqlite3.connect("bank.db")
         cur = con.cursor()

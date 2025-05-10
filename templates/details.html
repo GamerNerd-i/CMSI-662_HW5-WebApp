@@ -8,7 +8,7 @@
             <span class="balance-value">{{ balance }}</span>
         </div>
     {% endif %}
-    {% if not balance %}<p class="balance-label">Account not found</p>{% endif %}
+    {% if not balance %}<p class="alert alert-danger">Account not found</p>{% endif %}
     <div class="action-links">
         <a href="/accounts" class="back-link">Back to Accounts</a>
         <a href="/dashboard" class="back-link">Back to Dashboard</a>

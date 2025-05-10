@@ -10,6 +10,7 @@ from flask import (
     abort,
     send_from_directory,
 )
+import random
 
 from user_service import get_user_with_credentials, login_required
 from account_service import do_transfer, get_balance, get_user_accounts
@@ -90,23 +91,30 @@ def transfer():
     try:
         amount = int(request.form.get("amount"))
     except ValueError:
-        abort(400, "Incorrect input format for transfer amount.")
+        return render_template(
+            "transfer.html", error="Incorrect input format for transfer amount."
+        )
 
     if amount < 1:
-        abort(400, "Must trade at least 1 mineral.")
+        return render_template("transfer.html", error="Must trade at least 1 mineral.")
     if amount > 1000:
-        abort(400, "Cannot trade more than 999 minerals at once.")
+        return render_template(
+            "transfer.html", error="Cannot trade more than 999 minerals at once."
+        )
 
     available_balance = get_balance(source, g.user)
     if available_balance is None:
-        abort(404, "Account not found.")
+        return render_template("transfer.html", error="Account not found.")
     if amount > available_balance:
-        abort(400, "You have not enough minerals!")
+        return render_template("transfer.html", error="You have not enough minerals!")
 
     if do_transfer(source, target, amount):
         flash("Mineral transfer complete!")
     else:
-        abort(400, "Transfer interrupted by enemy communications! Try again later.")
+        return render_template(
+            "transfer.html",
+            error=f'Transfer interrupted by enemy {"Terran" if random.randint(0,1) == 0 else "Zerg"}! Try again later.',
+        )
 
     response = make_response(redirect("/dashboard"))
     return response, 303
