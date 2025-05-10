@@ -57,6 +57,12 @@ def logged_in():
         return False
 
 
+"""
+datetime.utcnow was deprecated some time ago, so create_token() has been changed to use
+the now-preferred datetime.now(timezone.utc) method. It's important to stay up to date!
+"""
+
+
 def create_token(email):
     now = datetime.now(timezone.utc)
     payload = {"sub": email, "iat": now, "exp": now + timedelta(minutes=60)}

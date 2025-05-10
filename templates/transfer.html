@@ -3,6 +3,10 @@
 {% block content %}
     <h1>Warp Resources</h1>
     {% if error %}<p class="alert alert-danger">{{ error }}</p>{% endif %}
+    <p>
+        Welcome, Executor. Our Warp Gates are primed and ready. Please specify the source and destination archives, along with the quantity of minerals to transfer.
+    </p>
+    <div class="psi-matrix"></div>
     <form method="POST" action="/transfer" class="transfer-form">
         <!-- SQL INJECTION: We restrict the client from entering any kind of punctuation.
     We still validate them on the server, but it doesn't hurt to have this in place as well. -->
@@ -12,23 +16,23 @@
                    name="from"
                    type="text"
                    pattern="[a-zA-Z0-9]+"
-                   placeholder="Source account" />
+                   placeholder="Source archive" />
             <label for="to-account">To</label>
             <input id="to-account"
                    name="to"
                    type="text"
                    pattern="[a-zA-Z0-9]+"
-                   placeholder="Destination account" />
+                   placeholder="Destination archive" />
             <label for="mineral-amount">Amount</label>
             <input id="mineral-amount"
                    name="amount"
                    type="number"
                    min="1"
                    max="999"
-                   placeholder="Mineral count" />
+                   placeholder="Mineral quantity" />
         </div>
         <div class="form-actions">
-            <input type="submit" value="Warp Transfer">
+            <input type="submit" value="Engage Warp Transfer">
         </div>
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
     </form>

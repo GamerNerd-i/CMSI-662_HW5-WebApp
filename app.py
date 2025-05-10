@@ -66,7 +66,6 @@ def accounts():
 @login_required
 def details():
     account_number = request.args["account"]
-    print(g.user)
     return render_template(
         "details.html",
         user=g.user,
@@ -86,7 +85,7 @@ def transfer():
 
     """
     XSS: We already restrict inputs from the client, but as always we make sure to check them again
-    on the server.
+    on the server. We drop abort in favor of rerendering to display errors instead.
     """
     try:
         amount = int(request.form.get("amount"))
@@ -113,7 +112,7 @@ def transfer():
     else:
         return render_template(
             "transfer.html",
-            error=f'Transfer interrupted by enemy {"Terran" if random.randint(0,1) == 0 else "Zerg"}! Try again later.',
+            error=f'Warp interrupted by enemy {"Terran" if random.randint(0,1) == 0 else "Zerg"}! Try again later.',
         )
 
     response = make_response(redirect("/dashboard"))
